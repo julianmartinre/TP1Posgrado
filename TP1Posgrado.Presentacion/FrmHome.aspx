@@ -10,8 +10,25 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:GridView ID="GridPRODUCTO" runat="server"></asp:GridView>
+            <asp:GridView ID="GridALUMNO" runat="server"></asp:GridView>
         </div>
+        <br />
+        <div>
+            <asp:GridView ID="GridALUMNOTELEFONO" runat="server"></asp:GridView>
+        </div>
+        <br />
+        <div>
+            <asp:GridView ID="GridALUMNOEMAIL" runat="server"></asp:GridView>
+        </div>
+        <br />
+        <div>
+            <asp:GridView ID="GridMATERIA" runat="server"></asp:GridView>
+        </div>
+        <br />
+        <div>
+            <asp:GridView ID="GridCALIFICACION" runat="server"></asp:GridView>
+        </div>
+        <br />
     </form>
 </body>
 </html>

@@ -8,8 +8,20 @@ namespace TP1Posgrado.Presentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             EntidadesDataDataContext db = new EntidadesDataDataContext();
-            GridPRODUCTO.DataSource = db.Producto;
-            GridPRODUCTO.DataBind();
+            GridALUMNO.DataSource = db.Alumno;
+            GridALUMNO.DataBind();
+
+            GridALUMNOTELEFONO.DataSource = db.AlumnoTelefono;
+            GridALUMNOTELEFONO.DataBind();
+
+            GridALUMNOEMAIL.DataSource = db.AlumnoEmail;
+            GridALUMNOEMAIL.DataBind();
+
+            GridMATERIA.DataSource = db.Materia;
+            GridMATERIA.DataBind();
+
+            GridCALIFICACION.DataSource = db.Calificacion;
+            GridCALIFICACION.DataBind();
         }
     }
 }

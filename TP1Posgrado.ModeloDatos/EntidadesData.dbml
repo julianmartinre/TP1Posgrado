@@ -1,9 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Posgrado" Class="EntidadesDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-5QH7RIN\SQLEXPRESS;Initial Catalog=Posgrado;Integrated Security=True" SettingsObjectName="TP1Posgrado.ModeloDatos.Properties.Settings" SettingsPropertyName="PosgradoConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Producto" Member="Producto">
-    <Type Name="Producto">
-      <Column Name="CodProducto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.Alumno" Member="Alumno">
+    <Type Name="Alumno">
+      <Column Name="DNI" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaNacimiento" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Alumno_AlumnoEmail" Member="AlumnoEmail" ThisKey="DNI" OtherKey="DNIAlumno" Type="AlumnoEmail" />
+      <Association Name="Alumno_AlumnoTelefono" Member="AlumnoTelefono" ThisKey="DNI" OtherKey="DNIAlumno" Type="AlumnoTelefono" />
+      <Association Name="Alumno_Calificacion" Member="Calificacion" ThisKey="DNI" OtherKey="DNIAlumno" Type="Calificacion" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlumnoEmail" Member="AlumnoEmail">
+    <Type Name="AlumnoEmail">
+      <Column Name="DNIAlumno" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Alumno_AlumnoEmail" Member="Alumno" ThisKey="DNIAlumno" OtherKey="DNI" Type="Alumno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AlumnoTelefono" Member="AlumnoTelefono">
+    <Type Name="AlumnoTelefono">
+      <Column Name="DNIAlumno" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Alumno_AlumnoTelefono" Member="Alumno" ThisKey="DNIAlumno" OtherKey="DNI" Type="Alumno" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Calificacion" Member="Calificacion">
+    <Type Name="Calificacion">
+      <Column Name="DNIAlumno" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CodMateria" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nota" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Alumno_Calificacion" Member="Alumno" ThisKey="DNIAlumno" OtherKey="DNI" Type="Alumno" IsForeignKey="true" />
+      <Association Name="Materia_Calificacion" Member="Materia" ThisKey="CodMateria" OtherKey="CodMateria" Type="Materia" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Materia" Member="Materia">
+    <Type Name="Materia">
+      <Column Name="CodMateria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Materia_Calificacion" Member="Calificacion" ThisKey="CodMateria" OtherKey="CodMateria" Type="Calificacion" />
     </Type>
   </Table>
 </Database>
